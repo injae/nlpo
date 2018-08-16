@@ -1,0 +1,25 @@
+package:
+  name: nlpo
+  version: 0.0.1
+  type: binary
+  thirdparty-repo:
+    - https://github.com/INJAE/cppm_packages.git
+compiler:
+  type: clang++
+  luncher: ccache
+  option: -std=c++17 -g -Wall -fPIC -O0 -Qunused-arguments
+builder:
+  type: make
+binary:
+  nlpo:
+    version: 0.0.1
+    type: static
+    source:
+      - src/.*
+    dependencies:
+      - nieel 0.0.1 nieel::nieel
+      
+      
+br:
+  - cppm build
+  - cppm run
