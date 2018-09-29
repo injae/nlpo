@@ -8,8 +8,10 @@ compiler:
   type: clang++
   luncher: ccache
   option: -std=c++17 -g -Wall -fPIC -O0 -Qunused-arguments
+
 builder:
   type: make
+
 binary:
   nlpo:
     version: 0.0.1
@@ -18,7 +20,6 @@ binary:
       - src/.*
     dependencies:
       - nieel 0.0.1 nieel::nieel
-      
       
 br:
   - cppm build

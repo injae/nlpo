@@ -16,10 +16,10 @@ set(thirdparty
 )
 set(source 
 	src/option.cpp
+	src/app.cpp
+	src/command.cpp
 	src/main.cpp
-	src/args.cpp
-	src/option_group.cpp
-	src/program.cpp
+	src/.#main.cpp
 )
 build_binary(nlpo "${source}" "${thirdparty}")
 

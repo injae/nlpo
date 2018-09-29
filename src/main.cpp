@@ -1,62 +1,26 @@
-#include "nlpo/program.h"
-#include "nlpo/option_group.h"
+#include "nlpo/app.h"
+#include <iostream>
 
-#include <nieel/algorithm.hpp>
-#include <iomanip>
 
-class TT
+
+int main(int argv, char* argc[])
 {
-public:
-    TT(nlpo::Args&& args) : prg_(std::move(args)) {
-        prg_["Options:"]["--tt"]
-            .abbreviation("-t")
-            .description("test option")
-            .call_back([](){ std::cout << "test" << std::endl; });
-        prg_["Options:"]["--help"]
-            .abbreviation("-h")
-            .description("help")
-            .call_back([&](){ prg_.help(); });
-        prg_["Command:"]["tt"]
-            .description("test option")
-            .call_back([&](){ prg_.args().clear(); });
-        prg_["Command:"][" "]
-            .description("default option")
-            .call_back([](){std::cout << "default option" << std::endl;});
-    }
-    void operator() () { prg_.run(); }
-private:
-   nlpo::Program prg_; 
-};
 
-class Test
-{
-public:
-    Test(nlpo::Args&& args) : prg_(std::move(args)) {
-        prg_["Options:"]["--test"]
-            .abbreviation("-t")
-            .description("test option")
-            .call_back([](){ std::cout << "test" << std::endl; });
-        prg_["Options:"]["--help"]
-            .abbreviation("-h")
-            .description("help")
-            .call_back([&](){ prg_.help(); });
-        prg_["Command:"]["xx"]
-            .description("test option")
-            .call_back([&](){ TT(std::move(prg_.args()))(); });
-        prg_["Command:"][" "]
-            .description("default option")
-            .call_back([](){std::cout << "default option" << std::endl;});
-    }
-    void operator() () { prg_.run(); }
-private:
-   nlpo::Program prg_; 
-};
-
-
-int main(int argc, char* argv[]) 
-{
-    Test program(nlpo::Args(argc, argv));
-    program();
+    nlpo::App app(argv, argc);
+    app.add_option("help")
+        .abbr("h")
+        .call_back([](){ std::cout << "hello" << std::endl; }); 
     
+
+
+    app.add_command("make")
+        .call_back([&app]()
+        { nlpo::App(app).add_option("help")
+                        .call_back([](){ std::cout << "no" << std::endl;})});
+   
+                          
+    app.run();
+
+
     return 0;
 }
