@@ -1,5 +1,6 @@
 #include "nlpo/app.h"
 #include <iostream>
+#include <algorithm>
 
 namespace nlpo
 {
@@ -27,6 +28,17 @@ namespace nlpo
         option->regist(this);
         options_[opt] = option;
         return *option;
+    }
+
+    void App::show_help() {
+        std::cout << "Option:" << std::endl;
+        std::for_each(options_.begin(), options_.end(), [](auto& opt){
+            std::cout << opt.second->make_description();
+        });
+        std::cout << "\nCommand:" << std::endl;
+        std::for_each(commands_.begin(), commands_.end(), [](auto& cmd){
+            std::cout << cmd.second->make_description();
+        });
     }
     
     void App::run() {

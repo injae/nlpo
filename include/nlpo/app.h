@@ -24,6 +24,7 @@ namespace nlpo
         std::list<std::string>& args() { return args_; }
         void parse(int argc, char* argv[]);
         void parse(App& app);
+        void show_help();
         friend Command;
         friend Option;
     private:

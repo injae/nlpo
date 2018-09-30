@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <string_view>
 #include <functional>
 
 namespace nlpo
@@ -15,8 +16,9 @@ namespace nlpo
         ptr get_ptr() { return shared_from_this(); }
         Command(std::string name) : name_(name) {}
         void regist(App* app) { owner_ = app;}
-        Command& desc(const char* description);
+        Command& desc(std::string_view description);
         Command& call_back(std::function<void()>&& func);
+        std::string make_description();
         void run();
     private:
         std::string name_;

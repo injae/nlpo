@@ -2,6 +2,7 @@
 #define __NLPO__OPTION_H__
 
 #include <string>
+#include <string_view>
 #include <memory>
 #include <functional>
 
@@ -15,9 +16,10 @@ namespace nlpo
         ptr get_ptr() { return shared_from_this(); }
         Option(const std::string& name) : name_(name) {}
         void regist(App *app) { owner_ = app; }
-        Option& abbr(const char* abbreviation);
-        Option& desc(const char* description);
+        Option& abbr(std::string_view abbreviation);
+        Option& desc(std::string_view description);
         Option& call_back(std::function<void()>&& func);
+        std::string make_description();
         void run(); 
     private:
         std::string name_;

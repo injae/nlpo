@@ -4,13 +4,13 @@
 
 namespace nlpo
 {
-    Option& Option::abbr(const char* abbreviation) {
+    Option& Option::abbr(std::string_view abbreviation) {
         abbr_ = abbreviation; 
         owner_->options_[ ("-" + abbr_) ] = shared_from_this();
         return *this;
     }
 
-    Option& Option::desc(const char * description) {
+    Option& Option::desc(std::string_view description) {
         desc_ = description;
         return *this;
     }
@@ -22,5 +22,12 @@ namespace nlpo
 
     void Option::run() {
         for(auto& func : call_backs_) func();
+    }
+
+    std::string Option::make_description() {
+        if(abbr_ == "")
+           return name_ + ":\t\t\t" + desc_ + "\n";
+        else 
+           return "--" + name_ + "[ -"+abbr_+" ] :\t\t\t" + desc_ + "\n";
     }
 }
