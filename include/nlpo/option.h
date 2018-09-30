@@ -22,6 +22,7 @@ namespace nlpo
         std::string make_description();
         void run(); 
     private:
+        bool is_show_ = false;
         std::string name_;
         std::string desc_;
         std::string abbr_;

@@ -25,6 +25,8 @@ namespace nlpo
     }
 
     std::string Option::make_description() {
+        if(is_show_)  return "";
+        is_show_ = true;
         if(abbr_ == "")
            return name_ + ":\t\t\t" + desc_ + "\n";
         else 
