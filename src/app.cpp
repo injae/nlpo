@@ -24,7 +24,7 @@ namespace nlpo
     
     Option& App::add_option(const std::string& name) {
         auto opt = "--" + name;
-        auto option = std::make_shared<Option>(opt);
+        auto option = std::make_shared<Option>(name);
         option->regist(this);
         options_[opt] = option;
         return *option;
