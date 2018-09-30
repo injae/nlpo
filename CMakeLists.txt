@@ -16,6 +16,7 @@ set(source
 	src/option.cpp
 	src/app.cpp
 	src/command.cpp
+	src/.#option.cpp
 )
 build_library(nlpo static "${source}" "${thirdparty}")
 

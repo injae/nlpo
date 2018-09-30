@@ -17,7 +17,7 @@ namespace nlpo
     }
 
     std::string Command::make_description() {
-        if(is_show_)  return "";
+        if(!is_show_)  return "";
         is_show_ = true;
         return name_ + " :\t\t\t" + desc_ + "\n";
     }

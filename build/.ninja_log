@@ -23,3 +23,6 @@
 0	1102	1538282943877623000	CMakeFiles/nlpo.dir/src/app.cpp.o	9006fb04f58a9de0
 1103	1127	1538282943901643793	libnlpo.a	2f994bb6ff3c394f
 1	15	0	CMakeFiles/install.util	f42bfec33fe20877
+1	598	1538283145110227887	CMakeFiles/nlpo.dir/src/command.cpp.o	520fedc126107489
+598	623	1538283145138348894	libnlpo.a	2f994bb6ff3c394f
+0	14	0	CMakeFiles/install.util	f42bfec33fe20877
