@@ -1,0 +1,7 @@
+/usr/local/lib/libnlpo.a
+/usr/local/include/nlpo/app.h
+/usr/local/include/nlpo/option.h
+/usr/local/include/nlpo/command.h
+/usr/local/lib/cmake/nlpo/nlpo-config.cmake
+/usr/local/lib/cmake/nlpo/nlpo-config-noconfig.cmake
+/usr/local/lib/cmake/nlpo/nlpo-config-version.cmake

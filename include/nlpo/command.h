@@ -12,9 +12,9 @@ namespace nlpo
     {
     public:
         using ptr = std::shared_ptr<Command>;
+        ptr get_ptr() { return shared_from_this(); }
         Command(std::string name) : name_(name) {}
         void regist(App* app) { owner_ = app;}
-        ptr get_ptr() { return shared_from_this(); }
         Command& desc(const char* description);
         Command& call_back(std::function<void()>&& func);
         void run();

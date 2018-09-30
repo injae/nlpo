@@ -1,0 +1,6 @@
+# ninja log v5
+1	895	1538277631531526730	CMakeFiles/nlpo.dir/src/command.cpp.o	520fedc126107489
+0	1218	1538277631855992458	CMakeFiles/nlpo.dir/src/option.cpp.o	fd602446aa54f5d
+1	1361	1538277631996193698	CMakeFiles/nlpo.dir/src/app.cpp.o	9006fb04f58a9de0
+1361	1413	1538277632044257402	libnlpo.a	2f994bb6ff3c394f
+1	37	0	CMakeFiles/install.util	f42bfec33fe20877

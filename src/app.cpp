@@ -3,12 +3,16 @@
 
 namespace nlpo
 {
-    App::App(int argc, char* argv[]) {
+    void App::parse(int argc, char* argv[]) {
         for(int i = 1; i < argc; ++i)  
             args_.emplace_back(std::string{argv[i]}); 
+        run();
     }
 
-    App::App(App& app) { args_ = std::move(app.args_); }
+    void App::parse(App& app) {
+        args_ = std::move(app.args_);
+        run();
+    }
 
     Command& App::add_command(const std::string& name) {
         auto command = std::make_shared<Command>(name);
