@@ -30,6 +30,6 @@ namespace nlpo
         if(abbr_ == "")
            return name_ + ":\t\t\t" + desc_ + "\n";
         else 
-           return "--" + name_ + "[ -"+abbr_+" ] :\t\t\t" + desc_ + "\n";
+           return "--" + name_ + "[ -"+abbr_+" ]\t\t\t:" + desc_ + "\n";
     }
 }
