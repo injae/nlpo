@@ -48,6 +48,7 @@ namespace nlpo
     }
     
     void App::run() {
+        if(args_.empty() && default_command_) { default_command_->run(); }
         while(!args_.empty()){
             auto arg = args_.front();
             if(auto opt = options_.find(arg); !(opt == options_.end())) {
@@ -66,6 +67,5 @@ namespace nlpo
                 exit(1);
             }
         }
-        if(default_command_) { default_command_->run(); }
     }
 }
