@@ -6,7 +6,7 @@ package:
     - https://github.com/INJAE/cppm_packages.git
 
 compiler:
-  type: g++
+  type: clang++
   luncher: ccache
   option: -std=c++17 -g -Wall -fPIC -O0 
 

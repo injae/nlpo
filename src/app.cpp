@@ -22,6 +22,12 @@ namespace nlpo
         return *command;
     }
     
+    Command& App::add_command() {
+        default_command_ = std::make_optional<Command>("default");         
+        return *default_command_;
+                                                                          
+    }
+    
     Option& App::add_option(const std::string& name) {
         auto opt = "--" + name;
         auto option = std::make_shared<Option>(name);
@@ -42,7 +48,7 @@ namespace nlpo
     }
     
     void App::run() {
-        while(!args_.empty()) {
+        while(!args_.empty()){
             auto arg = args_.front();
             if(auto opt = options_.find(arg); !(opt == options_.end())) {
                 args_.pop_front();
@@ -52,11 +58,14 @@ namespace nlpo
                 args_.pop_front();
                 cmd->second->run();
             }
+            else if(default_command_) {
+                default_command_->run();
+            }
             else {
                 std::cerr << "can't find option and subcommand" << std::endl;
                 exit(1);
             }
         }
+        if(default_command_) { default_command_->run(); }
     }
-
 }

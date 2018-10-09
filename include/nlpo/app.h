@@ -6,6 +6,7 @@
 #include <vector>
 #include <memory>
 #include <variant>
+#include <optional>
 #include <string>
 #include "nlpo/option.h"
 #include "nlpo/command.h"
@@ -21,6 +22,7 @@ namespace nlpo
     public:
         Option&  add_option(const std::string& name);
         Command& add_command(const std::string& name);
+        Command& add_command();
         std::list<std::string>& args() { return args_; }
         void parse(int argc, char* argv[]);
         void parse(App& app);
@@ -33,6 +35,7 @@ namespace nlpo
         std::list<std::string> args_;
         std::map<std::string, std::shared_ptr<Option>>  options_;
         std::map<std::string, std::shared_ptr<Command>> commands_;
+        std::optional<Command> default_command_;
     };
     
 

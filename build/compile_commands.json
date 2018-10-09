@@ -1,0 +1,19 @@
+[
+{
+  "directory": "/home/nieel/dev/nlpo/build",
+  "command": "/usr/bin/clang++  -DSYSTEM_LINUX -I../include -I../src   -std=c++17 -g -Wall -fPIC -O0   -o CMakeFiles/nlpo.dir/src/option.cpp.o -c /home/nieel/dev/nlpo/src/option.cpp",
+  "file": "/home/nieel/dev/nlpo/src/option.cpp"
+},
+
+{
+  "directory": "/home/nieel/dev/nlpo/build",
+  "command": "/usr/bin/clang++  -DSYSTEM_LINUX -I../include -I../src   -std=c++17 -g -Wall -fPIC -O0   -o CMakeFiles/nlpo.dir/src/app.cpp.o -c /home/nieel/dev/nlpo/src/app.cpp",
+  "file": "/home/nieel/dev/nlpo/src/app.cpp"
+},
+
+{
+  "directory": "/home/nieel/dev/nlpo/build",
+  "command": "/usr/bin/clang++  -DSYSTEM_LINUX -I../include -I../src   -std=c++17 -g -Wall -fPIC -O0   -o CMakeFiles/nlpo.dir/src/command.cpp.o -c /home/nieel/dev/nlpo/src/command.cpp",
+  "file": "/home/nieel/dev/nlpo/src/command.cpp"
+}
+]
