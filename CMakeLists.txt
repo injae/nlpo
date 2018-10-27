@@ -19,7 +19,7 @@ set(MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0") 
-elseif("${{CMAKE_CXX_COMPILER_ID}}" STREQUAL "GNU")  
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")  
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0") 
 endif()
 
@@ -29,13 +29,10 @@ find_package(Boost  COMPONENTS system filesystem REQUIRED)
 list(APPEND thirdparty  ${Boost_LIBRARIES})
 
 set(nlpo_source 
-	include/nlpo/app.h
-	include/nlpo/option.h
-	include/nlpo/command.h
 	src/option.cpp
 	src/app.cpp
 	src/command.cpp
 )
 
-build_library(nlpo "${nlpo_source}" "${thirdparty}")
+build_library(nlpo static "${nlpo_source}" "${thirdparty}")
 

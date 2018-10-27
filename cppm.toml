@@ -19,7 +19,8 @@ make    = {option = "-j4"}
 
 [[lib]]
 name   = "nlpo"
-source = ["include/.*" ,"src/.*"]
+type   = "static"
+source = ["src/.*"]
 
 [dependencies]
 Boost   = {cmake = " ${Boost_LIBRARIES}", components="system filesystem"}

@@ -25,7 +25,6 @@ namespace nlpo
     Command& App::add_command() {
         default_command_ = std::make_optional<Command>("default");         
         return *default_command_;
-                                                                          
     }
     
     Option& App::add_option(const std::string& name) {
@@ -48,7 +47,7 @@ namespace nlpo
     }
     
     void App::run() {
-        if(args_.empty() && default_command_) { default_command_->run(); }
+        if(args_.empty() && default_command_) { default_command_->run(); return; }
         while(!args_.empty()){
             auto arg = args_.front();
             if(auto opt = options_.find(arg); !(opt == options_.end())) {
