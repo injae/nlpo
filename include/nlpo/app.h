@@ -23,6 +23,7 @@ namespace nlpo
         Option&  add_option(const std::string& name);
         Command& add_command(const std::string& name);
         Command& add_command();
+        void call_default() { default_command_->run(); }
         std::list<std::string>& args() { return args_; }
         void parse(int argc, char* argv[]);
         void parse(App& app);
