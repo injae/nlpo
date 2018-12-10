@@ -22,17 +22,30 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")  
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0") 
 endif()
+find_program(CCACHE_EXE ccache)
+if(CCACHE_EXE)
+    set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
+    message("--- use ccache")
+endif()
 
-include(${MODULE_PATH}/project_maker.cmake)
+include(${MODULE_PATH}/cppm_tool.cmake)
+
 set(thirdparty)
+download_thirdparty(Boost)
 find_package(Boost  COMPONENTS system filesystem REQUIRED)
 list(APPEND thirdparty  ${Boost_LIBRARIES})
 
-set(nlpo_source 
-	src/option.cpp
+
+add_library(nlpo STATIC "")
+target_sources(nlpo
+	PRIVATE 
 	src/app.cpp
+	src/option.cpp
 	src/command.cpp
 )
+set_target_properties(nlpo PROPERTIES LINKER_LANGUAGE CXX)
+target_link_libraries(nlpo PUBLIC ${thirdparty})
 
-build_library(nlpo static "${nlpo_source}" "${thirdparty}")
+target_install(nlpo STATIC)
+
 

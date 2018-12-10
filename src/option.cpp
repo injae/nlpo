@@ -4,13 +4,13 @@
 
 namespace nlpo
 {
-    Option& Option::abbr(std::string_view abbreviation) {
+    Option& Option::abbr(const std::string& abbreviation) {
         abbr_ = abbreviation; 
         owner_->options_[ ("-" + abbr_) ] = shared_from_this();
         return *this;
     }
 
-    Option& Option::desc(std::string_view description) {
+    Option& Option::desc(const std::string& description) {
         desc_ = description;
         return *this;
     }

@@ -2,7 +2,7 @@
 
 namespace nlpo
 {
-    Command& Command::desc(std::string_view description) {
+    Command& Command::desc(const std::string& description) {
         desc_ = description;
         return *this;
     }
