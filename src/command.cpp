@@ -12,6 +12,11 @@ namespace nlpo
         return *this;
     }
 
+    Command& Command::args_desc(const std::string& description) {
+        args_desc_ = description;
+        return *this;
+    }
+
     void Command::run() {
         for(auto& func : call_backs_) func();
     }
@@ -19,6 +24,6 @@ namespace nlpo
     std::string Command::make_description() {
         if(is_show_)  return "";
         is_show_ = true;
-        return "   " + name_ + "\t\t\t:" + desc_ + "\n";
+        return "   " +name_+" "+ args_desc_ +"\t\t\t:" + desc_ + "\n";
     }
 }
