@@ -28,10 +28,11 @@ if(CCACHE_EXE)
     message("--- use ccache")
 endif()
 
+list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/cmake")
 include(${MODULE_PATH}/cppm_tool.cmake)
 
 set(thirdparty)
-download_thirdparty(Boost)
+download_thirdparty(Boost "")
 find_package(Boost  COMPONENTS system filesystem REQUIRED)
 list(APPEND thirdparty  ${Boost_LIBRARIES})
 
@@ -46,6 +47,6 @@ target_sources(nlpo
 set_target_properties(nlpo PROPERTIES LINKER_LANGUAGE CXX)
 target_link_libraries(nlpo PUBLIC ${thirdparty})
 
-target_install(nlpo STATIC)
+target_install(nlpo STATIC TRUE)
 
 

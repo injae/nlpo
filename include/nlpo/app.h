@@ -25,6 +25,7 @@ namespace nlpo
         Command& add_command();
         void call_default() { default_command_->run(); }
         std::list<std::string>& args() { return args_; }
+        std::string get_arg() { auto arg = args_.front(); args_.pop_front(); return arg; }
         void parse(int argc, char* argv[]);
         void parse(App& app);
         void show_help();

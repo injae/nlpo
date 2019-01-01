@@ -10,8 +10,8 @@ builder  = "ninja"
 compiler = "clang++"
 
 [compiler] 
-clang++ = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "7.0", ccache=true}
-g++     = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "8.0", ccache=true}
+clang++ = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "7.0", }
+g++     = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "8.0", }
 
 [builder]
 ninja   = {option = "-j4"}
@@ -23,4 +23,4 @@ type   = "static"
 source = ["src/.*"]
 
 [dependencies]
-Boost   = {cmake = " ${Boost_LIBRARIES}", components="system filesystem"}
+Boost   = {module = " ${Boost_LIBRARIES}", components="system filesystem"}

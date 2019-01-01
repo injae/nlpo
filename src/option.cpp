@@ -28,8 +28,8 @@ namespace nlpo
         if(is_show_)  return "";
         is_show_ = true;
         if(abbr_ == "")
-           return name_ + ":\t\t\t" + desc_ + "\n";
+           return "   --" + name_ + "\t\t\t:" + desc_ + "\n";
         else 
-           return "--" + name_ + "[ -"+abbr_+" ]\t\t\t:" + desc_ + "\n";
+           return "   --" + name_ + "[ -"+abbr_+" ]\t\t:" + desc_ + "\n";
     }
 }
