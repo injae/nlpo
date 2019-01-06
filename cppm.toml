@@ -5,17 +5,10 @@ description = "c++ program option and command library"
 
 [cmake]
 version  = "3.10"
-option   = ""
-builder  = "ninja"
-compiler = "clang++"
 
 [compiler] 
-clang++ = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "7.0", }
-g++     = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "8.0", }
-
-[builder]
-ninja   = {option = "-j4"}
-make    = {option = "-j4"}
+clang++ = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "7.0"}
+g++     = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "8.0"}
 
 [[lib]]
 name   = "nlpo"
@@ -23,4 +16,4 @@ type   = "static"
 source = ["src/.*"]
 
 [dependencies]
-Boost   = {module = " ${Boost_LIBRARIES}", components="system filesystem"}
+Boost = {module = " ${Boost_LIBRARIES}", version ="1.58.0", components="system filesystem"}

@@ -14,7 +14,7 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 endif()
 # detect host processor
 message(STATUS "The host processor is ${CMAKE_HOST_SYSTEM_PROCESSOR}")
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 set(MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
@@ -29,11 +29,12 @@ if(CCACHE_EXE)
 endif()
 
 list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/cmake")
+list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/pkgconfig")
 include(${MODULE_PATH}/cppm_tool.cmake)
 
 set(thirdparty)
-download_thirdparty(Boost "")
-find_package(Boost  COMPONENTS system filesystem REQUIRED)
+download_thirdparty(Boost "1.58.0")
+find_package(Boost 1.58.0 COMPONENTS system filesystem REQUIRED)
 list(APPEND thirdparty  ${Boost_LIBRARIES})
 
 

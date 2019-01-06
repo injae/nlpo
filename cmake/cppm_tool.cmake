@@ -1,10 +1,10 @@
 
 macro(download_thirdparty name version)
-   #find_package(${name} ${version} QUIET)
-   if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${name}.cmake.in)#AND NOT ${name}_FOUND AND NOT ${name}_FIND_VERSION_EXACT)
+   find_package(${name} ${version} QUIET)
+   if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${name}.cmake.in AND NOT ${name}_FOUND AND NOT ${name}_FIND_VERSION_EXACT)
       configure_file(thirdparty/${name}.cmake.in ${CMAKE_BINARY_DIR}/thirdparty/${name}/CMakeLists.txt)
       execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" . WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name})
-      execute_process(COMMAND cmake  --build . WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name} )
+      execute_process(COMMAND cmake  --build . --target install WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name} )
    endif()
 endmacro()
 
@@ -52,7 +52,9 @@ function(target_install name type install)
             PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/include
             PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src
         )
-        install(TARGETS ${name} RUNTIME DESTINATION bin)
+        if(${install} MATCHES "TRUE" )
+            install(TARGETS ${name} RUNTIME DESTINATION bin)
+        endif(${install} MATCHES "TRUE")
     elseif(${type} MATCHES "STATIC" OR ${type} MATCHES "SHARED")
         target_include_directories(${name}
             PUBLIC
