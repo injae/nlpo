@@ -36,14 +36,18 @@ namespace nlpo
     }
 
     void App::show_help() {
-        std::cout << "Option:" << std::endl;
-        std::for_each(options_.begin(), options_.end(), [](auto& opt){
-            std::cout << opt.second->make_description();
-        });
-        std::cout << "\nCommand:" << std::endl;
-        std::for_each(commands_.begin(), commands_.end(), [](auto& cmd){
-            std::cout << cmd.second->make_description();
-        });
+        if(!options_.empty()) {
+            std::cout << "Option:" << std::endl;
+            std::for_each(options_.begin(), options_.end(), [](auto& opt){
+                std::cout << opt.second->make_description();
+            });
+        }
+        if(!commands_.empty()) {
+            std::cout << "Command:" << std::endl;
+            std::for_each(commands_.begin(), commands_.end(), [](auto& cmd){
+                std::cout << cmd.second->make_description();
+            });
+        }
     }
     
     void App::run() {

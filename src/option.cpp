@@ -1,6 +1,9 @@
 #include "nlpo/option.h"
 #include "nlpo/app.h"
 #include <iostream>
+#include <fmt/format.h>
+
+using namespace fmt::literals;
 
 namespace nlpo
 {
@@ -27,9 +30,15 @@ namespace nlpo
     std::string Option::make_description() {
         if(is_show_)  return "";
         is_show_ = true;
-        if(abbr_ == "")
-           return "   --" + name_ + "\t\t\t:" + desc_ + "\n";
-        else 
-           return "   --" + name_ + "[ -"+abbr_+" ]   \t\t:" + desc_ + "\n";
+        if(abbr_ == "") {
+            auto front = "{:<3}--{}"_format("",name_);
+            auto end = ":{0}"_format(desc_);
+            return "{:<30}{:<20}\n"_format(front,end);
+        }
+        else  {
+            auto front = "{:<3}--{} [-{}]"_format("",name_,abbr_);
+            auto end = ":{0}"_format(desc_);
+            return "{:<30}{:<20}\n"_format(front,end);
+        }
     }
 }

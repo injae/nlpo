@@ -1,4 +1,7 @@
 #include "nlpo/command.h"
+#include <fmt/format.h>
+
+using namespace fmt::literals;
 
 namespace nlpo
 {
@@ -24,6 +27,8 @@ namespace nlpo
     std::string Command::make_description() {
         if(is_show_)  return "";
         is_show_ = true;
-        return "   " +name_+" "+ args_desc_ +"\t\t\t:" + desc_ + "\n";
+        auto front = "{:<3}{} {}"_format("",name_,args_desc_);
+        auto end = ":{0}"_format(desc_);
+        return "{:<30}{:<20}\n"_format(front,end);
     }
 }
