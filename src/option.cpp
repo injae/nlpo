@@ -18,6 +18,11 @@ namespace nlpo
         return *this;
     }
 
+    Option& Option::args(const std::string& arguments) {
+        args_ = arguments;
+        return *this;
+    }
+
     Option& Option::call_back(std::function<void()>&& func) {
         call_backs_.emplace_back(std::move(func));
         return *this;
@@ -31,12 +36,12 @@ namespace nlpo
         if(is_show_)  return "";
         is_show_ = true;
         if(abbr_ == "") {
-            auto front = "{:<3}--{}"_format("",name_);
+            auto front = "{:<3}--{} {}"_format("",name_, args_);
             auto end = ":{0}"_format(desc_);
             return "{:<30}{:<20}\n"_format(front,end);
         }
         else  {
-            auto front = "{:<3}--{} [-{}]"_format("",name_,abbr_);
+            auto front = "{:<3}--{} [-{}] {}"_format("",name_,abbr_,args_);
             auto end = ":{0}"_format(desc_);
             return "{:<30}{:<20}\n"_format(front,end);
         }
