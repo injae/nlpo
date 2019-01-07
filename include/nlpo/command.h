@@ -16,7 +16,7 @@ namespace nlpo
         Command(std::string name) : name_(name) {}
         void regist(App* app) { owner_ = app;}
         Command& desc(const std::string& description);
-        Command& args_desc(const std::string& description);
+        Command& args(const std::string& description);
         Command& call_back(std::function<void()>&& func);
         std::string make_description();
         void run();
@@ -24,7 +24,7 @@ namespace nlpo
         bool is_show_ = false;
         std::string name_;
         std::string desc_;
-        std::string args_desc_;
+        std::string args_;
         App* owner_;
         std::vector<std::function<void()>> call_backs_;
     };
