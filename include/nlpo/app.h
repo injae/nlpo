@@ -5,7 +5,6 @@
 #include <list>
 #include <vector>
 #include <memory>
-#include <variant>
 #include <optional>
 #include <string>
 #include "nlpo/option.h"
@@ -13,9 +12,9 @@
 
 namespace nlpo
 {
-    template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
-    template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
-    using result = std::variant<std::string, std::vector<std::string>>;
+    //template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
+    //template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
+    //using result = std::variant<std::string, std::vector<std::string>>;
 
     class App 
     {
