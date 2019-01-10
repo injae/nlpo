@@ -33,9 +33,9 @@ list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/pkgconfig")
 include(${MODULE_PATH}/cppm_tool.cmake)
 
 set(thirdparty)
-download_thirdparty(Boost "1.58.0")
-find_package(Boost 1.58.0 COMPONENTS system filesystem REQUIRED)
-list(APPEND thirdparty  ${Boost_LIBRARIES})
+download_thirdparty(fmt "")
+find_package(fmt   REQUIRED)
+list(APPEND thirdparty fmt::fmt)
 
 
 add_library(nlpo STATIC "")
