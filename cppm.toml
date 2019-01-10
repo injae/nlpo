@@ -2,6 +2,7 @@
 name = "nlpo"
 version = "1.0.0"
 description = "c++ program option and command library"
+c++-version = "17"
 
 [cmake]
 version  = "3.10"
