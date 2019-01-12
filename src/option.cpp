@@ -38,12 +38,12 @@ namespace nlpo
         if(abbr_ == "") {
             auto front = "{:<3}--{} {}"_format("",name_, args_);
             auto end = ":{0}"_format(desc_);
-            return "{:<30}{:<20}\n"_format(front,end);
+            return "{:<35}{:<20}\n"_format(front,end);
         }
         else  {
             auto front = "{:<3}--{} [-{}] {}"_format("",name_,abbr_,args_);
             auto end = ":{0}"_format(desc_);
-            return "{:<30}{:<20}\n"_format(front,end);
+            return "{:<35}{:<20}\n"_format(front,end);
         }
     }
 }
