@@ -34,12 +34,7 @@ endif()
 list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/cmake")
 list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/pkgconfig")
 include(${MODULE_PATH}/cppm_tool.cmake)
-
-set(thirdparty)
-download_thirdparty(fmt "")
-find_package(fmt   REQUIRED)
-list(APPEND thirdparty fmt::fmt)
-
+find_cppkg(fmt lastest  MODULE fmt::fmt)
 
 add_library(nlpo STATIC "")
 target_sources(nlpo
@@ -49,8 +44,8 @@ target_sources(nlpo
 	src/command.cpp
 )
 set_target_properties(nlpo PROPERTIES LINKER_LANGUAGE CXX)
-target_link_libraries(nlpo PUBLIC ${thirdparty})
 
-target_install(nlpo STATIC TRUE)
+
+cppm_target_install(nlpo STATIC INSTALL)
 
 
