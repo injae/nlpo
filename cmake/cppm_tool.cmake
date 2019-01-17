@@ -1,17 +1,8 @@
-macro(download_thirdparty name version)
-   find_package(${name} ${version} QUIET)
-   if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${name}.cmake.in)# AND NOT ${name}_FOUND AND NOT ${name}_FIND_VERSION_EXACT)
-      configure_file(thirdparty/${name}.cmake.in ${CMAKE_BINARY_DIR}/thirdparty/${name}/CMakeLists.txt)
-      execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" . WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name})
-      execute_process(COMMAND cmake  --build . WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name} )
-   endif()
-endmacro()
-
 macro(find_cppkg)
     if(NOT DEFINED thirdparty)
       set(thirdparty "")
     endif()
-    set(options)
+    set(options HUNTER)
     set(oneValueArg)
     set(multiValueArgs COMPONENTS MODULE)
     cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
@@ -20,6 +11,14 @@ macro(find_cppkg)
     if(version STREQUAL "lastest")
       set(version "")
     endif()
+
+    if(ARG_HUNTER AND DEFINED ARG_COMPONENTS)
+      hunter_add_package(${name} COMPONENTS ${ARG_COMPONENTS})
+    endif()
+    if(ARG_HUNTER AND NOT DEFINED ARG_COMPONENTS)
+      hunter_add_package(${name})
+    endif()
+
     if(DEFINED ARG_COMPONENTS)
       find_package(${name} ${version} COMPONENTS ${ARG_COMPONENTS} QUIET)
     else()
@@ -27,6 +26,7 @@ macro(find_cppkg)
     endif()
 
     if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/${name}.cmake.in)
+       message("-- [cppm] Load ${name} cppkg file")
        configure_file(thirdparty/${name}.cmake.in ${CMAKE_BINARY_DIR}/thirdparty/${name}/CMakeLists.txt)
        execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" . WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name})
        execute_process(COMMAND cmake  --build . WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name} )
@@ -36,7 +36,11 @@ macro(find_cppkg)
    else()
      find_package(${name} ${version} QUIET)
    endif()
-   list(APPEND thirdparty ${ARG_MODULE})
+
+   if(DEFINED ARG_MODULE)
+     list(APPEND thirdparty ${ARG_MODULE})
+   endif()
+
 endmacro()
 
 function(library_var_maker name)
@@ -110,7 +114,70 @@ function(cppm_target_install)
     endif()
 endfunction()
 
-    
+function(download_package)
+    set(options LOCAL GLOBAL)
+    set(oneValueArgs URL GIT GIT_TAG)
+    set(multiValueArgs CMAKE_ARGS W_CONFIGURE W_BUILD W_INSTALL
+                                  L_CONFIGURE L_BUILD L_INSTALL)
+    cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    list(GET ARG_UNPARSED_ARGUMENTS 0 name)
+    list(GET ARG_UNPARSED_ARGUMENTS 1 version)
+    list(REMOVE_AT ARG_UNPARSED_ARGUMENTS 0 1)
+
+    if(ARG_LOCAL)
+      set(L_INSTALL_PREFIX "-DCMAKE_INSTALL_PREFIX=$ENV{HOME}/.cppm/local ")
+      set(W_INSTALL_PREFIX "-DCMAKE_INSTALL_PREFIX=$ENV{HOME}\\.cppm\\local ")
+    elseif(ARG_GLOBAL)
+      set(_INSTALL_PREFIX "")
+    else()
+      message(FATAL_ERROR "Need Option LOCAL or GLOBAL")
+    endif()
+
+    if(${version} STREQUAL "lastest")
+      set(version "")
+    endif()
+
+    include(ExternalProject)
+    find_package(${name} ${version} QUIET)
+    if(NOT "${${name}_FOUND}" AND NOT "${${name}_FIND_VERSION_EXACT}")
+        message("-- [cppm] Can not find ${name} package")
+        message("-- [cppm] Download ${name} package")
+        #find_package(Git REQUIRED)
+        if(NOT WIN32)
+          ExternalProject_Add(
+            ${name}
+            URL ${ARG_URL}
+            GIT_REPOSITORY ${ARG_GIT}
+            GIT_TAG ${ARG_GIT_TAG}
+            SOURCE_DIR $ENV{HOME}/.cppm/install
+            CMAKE_ARGS ${CMAKR_ARGS} ${L_INSTALL_PREFIX} ${ARG_CMAKE_ARGS}
+            CONFIGURE_COMMAND ${ARG_L_CONFIGURE}
+            BUILD_COMMAND ${ARG_L_BUILD}
+            INSTALL_COMMAND ${ARG_L_INSTALL}
+            BUILD_IN_SOURCE true
+            ${ARG_UNPARSED_ARGUMENTS}
+          )
+        else(NOT WIN32)
+          ExternalProject_Add(
+            ${name}
+            URL ${ARG_URL}
+            GIT_REPOSITORY ${ARG_GIT}
+            GIT_TAG ${ARG_GIT_TAG}
+            SOURCE_DIR $ENV{HOME}\.cppm\install
+            CMAKE_ARGS ${CMAKR_ARGS} ${W_INSTALL_PREFIX} ${ARG_CMAKE_ARGS}
+            CONFIGURE_COMMAND ${ARG_W_CONFIGURE}
+            BUILD_COMMAND ${ARG_W_BUILD}
+            INSTALL_COMMAND ${ARG_W_INSTALL}
+            BUILD_IN_SOURCE true
+            ${ARG_UNPARSED_ARGUMENTS}
+          )
+        endif(NOT WIN32)
+    else()
+        message("-- [cppm] Find ${name} package")
+    endif()
+endfunction()
+
     # pkg-config install part
     
     # set(PKGCONFIG_INSTALL_DIR
@@ -157,5 +224,3 @@ endfunction()
     # Requires:
     # Libs: -L${libdir} -L${sharedlibdir} -lz
     # Cflags: -I${includedir}
-
-      

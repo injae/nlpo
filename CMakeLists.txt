@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 
+include(cmake/HunterGate.cmake)
+HunterGate(
+   URL "https://github.com/ruslo/hunter/archive/v0.23.89.tar.gz"
+   SHA1 "a370290a8b32987755a36d64807bf8c7f5b61730"
+)
 project(nlpo LANGUAGES CXX VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -28,13 +33,13 @@ endif()
 find_program(CCACHE_EXE ccache)
 if(CCACHE_EXE)
     set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
-    message("--- use ccache")
+    message("-- [cppm] Find ccache")
 endif()
 
 list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/cmake")
 list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/pkgconfig")
 include(${MODULE_PATH}/cppm_tool.cmake)
-find_cppkg(fmt lastest  MODULE fmt::fmt)
+find_cppkg(fmt lastest  MODULE fmt::fmt )
 
 add_library(nlpo STATIC "")
 target_sources(nlpo
