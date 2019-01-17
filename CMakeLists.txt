@@ -36,9 +36,9 @@ if(CCACHE_EXE)
     message("-- [cppm] Find ccache")
 endif()
 
-list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/cmake")
-list(APPEND CMAKE_PREFIX_PATH "$ENV{HOME}/.cppm/local/lib/pkgconfig")
 include(${MODULE_PATH}/cppm_tool.cmake)
+cppm_setting()
+
 find_cppkg(fmt lastest  MODULE fmt::fmt )
 
 add_library(nlpo STATIC "")
