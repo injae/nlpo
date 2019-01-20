@@ -7,10 +7,11 @@ HunterGate(
 )
 project(nlpo LANGUAGES CXX VERSION 1.0.0)
 
+include(cmake/cppm_tool.cmake)
+cppm_setting()
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-message(STATUS "We are on a ${CMAKE_SYSTEM_NAME} system")
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
     add_definitions(-DSYSTEM_LINUX)
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
@@ -21,23 +22,14 @@ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     add_definitions(-DSYSTEM_WINDOWS)
 endif()
 # detect host processor
-message(STATUS "The host processor is ${CMAKE_HOST_SYSTEM_PROCESSOR}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
-set(MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0") 
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")  
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0") 
 endif()
-find_program(CCACHE_EXE ccache)
-if(CCACHE_EXE)
-    set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
-    message("-- [cppm] Find ccache")
-endif()
 
-include(${MODULE_PATH}/cppm_tool.cmake)
-cppm_setting()
 
 find_cppkg(fmt lastest  MODULE fmt::fmt )
 
