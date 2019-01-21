@@ -2,14 +2,14 @@
 name = "nlpo"
 version = "1.0.0"
 description = "c++ program option and command library"
-c++-version = "17"
 
 [cmake]
 version  = "3.6"
 
 [compiler] 
-clang++ = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "7.0"}
-g++     = {option = "-std=c++17 -Wall -g -fPIC -O0", version = "8.0"}
+clang = {option = "-std=c++17 -Wall -g -fPIC -O0"}
+gcc   = {option = "-std=c++17 -Wall -g -fPIC -O0"}
+msvc  = {option = "/std:c++17"}
 
 [[lib]]
 name   = "nlpo"
