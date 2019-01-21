@@ -3,9 +3,6 @@ name = "nlpo"
 version = "1.0.0"
 description = "c++ program option and command library"
 
-[cmake]
-version  = "3.6"
-
 [compiler] 
 clang = {option = "-std=c++17 -Wall -g -fPIC -O0"}
 gcc   = {option = "-std=c++17 -Wall -g -fPIC -O0"}
