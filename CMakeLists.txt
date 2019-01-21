@@ -7,27 +7,20 @@ HunterGate(
 )
 project(nlpo LANGUAGES CXX VERSION 1.0.0)
 
-include(cmake/cppm_tool.cmake)
-cppm_setting()
-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-    add_definitions(-DSYSTEM_LINUX)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-    add_definitions(-DSYSTEM_DARWIN)
-elseif(${CMAKE_SYSTEM_NAME} STREQUAL "AIX")
-    add_definitions(-DSYSTEM_AIX)
-elseif(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    add_definitions(-DSYSTEM_WINDOWS)
-endif()
-# detect host processor
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
-
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0") 
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")  
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0") 
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC") 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang") 
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -Wall -g -fPIC -O0")
 endif()
+include(cmake/cppm_tool.cmake)
+cppm_setting()
+# detect host processor
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
+
 
 
 find_cppkg(fmt lastest  MODULE fmt::fmt )
