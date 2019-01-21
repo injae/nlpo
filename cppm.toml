@@ -7,7 +7,6 @@ description = "c++ program option and command library"
 clang = {option = "-std=c++17 -Wall -g -fPIC -O0"}
 gcc   = {option = "-std=c++17 -Wall -g -fPIC -O0"}
 msvc  = {option = "/std:c++17"}
-xcode = {option = "-std=c++17 -Wall -g -fPIC -O0"}
 
 [[lib]]
 name   = "nlpo"
