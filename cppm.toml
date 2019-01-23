@@ -2,6 +2,7 @@
 name = "nlpo"
 version = "1.0.0"
 description = "c++ program option and command library"
+git = "https://github.com/injae/nlpo.git"
 
 [compiler] 
 clang = {option = "-std=c++17 -Wall -g -fPIC -O0"}
@@ -14,4 +15,4 @@ type   = "static"
 source = ["src/.*"]
 
 [dependencies]
-fmt={module="fmt::fmt", version="lastest"}
+    fmt={module="fmt::fmt", version="lastest", lnk_type="private"}

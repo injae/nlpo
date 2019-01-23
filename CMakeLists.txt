@@ -14,7 +14,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC") 
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang") 
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -g -fPIC -O0")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
 endif()
 include(cmake/cppm_tool.cmake)
 cppm_setting()
@@ -23,7 +23,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
 
 
-find_cppkg(fmt lastest  MODULE fmt::fmt )
+find_cppkg(fmt lastest  MODULE fmt::fmt PRIVATE )
 
 add_library(nlpo STATIC "")
 target_sources(nlpo
