@@ -66,6 +66,7 @@ macro(find_cppkg)
         configure_file(thirdparty/${name}/${version_}/${name}.cmake.in
                        ${CMAKE_BINARY_DIR}/thirdparty/${name}/${version_}/CMakeLists.txt)
         execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
+                                                 -DCMAKE_CXX_COMPILER="${CMAKE_CXX_COMPILER}"
                         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name}/${version_})
         execute_process(COMMAND cmake  --build .
                         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/thirdparty/${name}/${version_})
@@ -208,7 +209,7 @@ function(cppm_target_install)
         message("   - ${deps}\n")
 endfunction()
 
-function(download_package)
+macro(download_package)
     set(options LOCAL GLOBAL)
     set(oneValueArgs URL GIT GIT_TAG)
     set(multiValueArgs CMAKE_ARGS W_CONFIGURE W_BUILD W_INSTALL
@@ -233,21 +234,23 @@ function(download_package)
     if(${version} STREQUAL "lastest")
       set(version "")
     endif()
-    message("${ARG_GIT}")
 
     include(ExternalProject)
     find_package(${name} ${version} QUIET)
     if(NOT "${${name}_FOUND}" AND NOT "${${name}_FIND_VERSION_EXACT}")
         message(STATUS "[cppm] Can not find ${name} package")
         message(STATUS "[cppm] Download ${name} package")
+        if(NOT EXISTS ${HOME}/.cppm/install/${name})
+            file(MAKE_DIRECTORY ${HOME}/.cppm/install/${name})
+        endif()
         if(NOT WIN32)
           ExternalProject_Add(
             ${name}
-            #URL ${ARG_URL}
+            URL ${ARG_URL}
             GIT_REPOSITORY ${ARG_GIT}
-            #GIT_TAG ${ARG_GIT_TAG}
+            GIT_TAG ${ARG_GIT_TAG}
             SOURCE_DIR ${HOME}/.cppm/install/${name}/${_version}
-            CMAKE_ARGS ${CMAKR_ARGS} ${_INSTALL_PREFIX} ${ARG_CMAKE_ARGS}
+            CMAKE_ARGS ${CMAKE_ARGS} ${_INSTALL_PREFIX} ${ARG_CMAKE_ARGS}
             CONFIGURE_COMMAND ${ARG_L_CONFIGURE}
             BUILD_COMMAND ${ARG_L_BUILD}
             INSTALL_COMMAND ${ARG_L_INSTALL}
@@ -261,7 +264,7 @@ function(download_package)
             GIT_REPOSITORY ${ARG_GIT}
             GIT_TAG ${ARG_GIT_TAG}
             SOURCE_DIR ${HOME}/.cppm/install/${name}/${_version}
-            CMAKE_ARGS ${CMAKR_ARGS} ${_INSTALL_PREFIX} ${ARG_CMAKE_ARGS}
+            CMAKE_ARGS ${CMAKE_ARGS} ${_INSTALL_PREFIX} ${ARG_CMAKE_ARGS}
             CONFIGURE_COMMAND ${ARG_W_CONFIGURE}
             BUILD_COMMAND ${ARG_W_BUILD}
             INSTALL_COMMAND ${ARG_W_INSTALL}
@@ -273,7 +276,7 @@ function(download_package)
     else()
         message(STATUS "[cppm] Find ${name} package")
     endif()
-endfunction()
+endmacro()
 
     # pkg-config install part
     
