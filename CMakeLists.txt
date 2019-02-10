@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.6)
 
 include(cmake/HunterGate.cmake)
 HunterGate(
-   URL "https://github.com/ruslo/hunter/archive/v0.23.89.tar.gz"
-   SHA1 "a370290a8b32987755a36d64807bf8c7f5b61730"
+   URL "https://github.com/ruslo/hunter/archive/v0.23.98.tar.gz"
+   SHA1 "bf539cb70375ac319e386ae2ec5b5a0c4923480a"
 )
 project(nlpo LANGUAGES CXX VERSION 1.0.0)
 
@@ -23,18 +23,19 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
 
 
-find_cppkg(fmt lastest  MODULE fmt::fmt PRIVATE )
+find_cppkg(fmt lastest  )
 
-add_library(nlpo STATIC "")
-target_sources(nlpo
-	PRIVATE 
+cppm_target_define(nlpo STATIC 
+SOURCES 
 	src/app.cpp
 	src/option.cpp
-	src/command.cpp
+	src/command.cpp)
+
+
+cppm_target_dependencies(nlpo 
+PRIVATE	
+	fmt::fmt
 )
-set_target_properties(nlpo PROPERTIES LINKER_LANGUAGE CXX)
 
-
-cppm_target_install(nlpo STATIC INSTALL)
-
+cppm_target_install(nlpo)
 
