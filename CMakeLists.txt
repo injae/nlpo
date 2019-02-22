@@ -23,7 +23,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
 find_cppkg(fmt lastest)
 
-cppm_target_define(nlpo SHARED
+cppm_target_define(nlpo STATIC
 SOURCES 
 	src/app.cpp
 	src/option.cpp
