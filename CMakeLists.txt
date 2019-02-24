@@ -21,16 +21,19 @@ cppm_setting()
 # detect host processor
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
-find_cppkg(fmt lastest)
 
-cppm_target_define(nlpo STATIC
+
+find_cppkg(fmt lastest  )
+
+cppm_target_define(nlpo STATIC 
 SOURCES 
 	src/app.cpp
 	src/option.cpp
 	src/command.cpp)
 
-cppm_target_dependencies(nlpo
-PUBLIC
+
+cppm_target_dependencies(nlpo 
+PUBLIC	
 	fmt::fmt
 )
 
