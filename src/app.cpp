@@ -48,6 +48,7 @@ namespace nlpo
                 std::cout << cmd.second->make_description();
             });
         }
+        exit(1);
     }
     
     void App::run() {
