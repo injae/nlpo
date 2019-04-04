@@ -19,6 +19,7 @@ namespace nlpo
     class App 
     {
     public:
+        App();
         Option&  add_option(const std::string& name);
         Command& add_command(const std::string& name);
         Command& add_command();

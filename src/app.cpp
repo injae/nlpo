@@ -4,6 +4,13 @@
 
 namespace nlpo
 {
+    App::App() {
+        add_option("help")
+        .abbr("h")
+        .desc("show cppm commands and options")
+        .call_back([&](){ show_help(); });
+    }
+
     void App::parse(int argc, char* argv[]) {
         for(int i = 1; i < argc; ++i)  
             args_.emplace_back(std::string{argv[i]}); 
