@@ -15,4 +15,4 @@ type   = "static"
 source = ["src/.*"]
 
 [dependencies]
-fmt={module="fmt::fmt", lnk_type="interface"}
+fmt={module="fmt::fmt"}

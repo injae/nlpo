@@ -33,7 +33,7 @@ SOURCES
 
 
 cppm_target_dependencies(nlpo 
-INTERFACE	
+PUBLIC	
 	fmt::fmt
 )
 
