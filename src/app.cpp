@@ -51,7 +51,6 @@ namespace nlpo
     }
     
     void App::run() {
-        if(args_.empty() && default_command_) { default_command_->run(); return; }
         while(!args_.empty()){
             auto arg = args_.front();
             if(auto opt = options_.find(arg); !(opt == options_.end())) {
@@ -62,13 +61,11 @@ namespace nlpo
                 args_.pop_front();
                 cmd->second->run();
             }
-            else if(default_command_) {
-                default_command_->run();
-            }
             else {
                 std::cerr << "can't find option and subcommand" << std::endl;
                 exit(1);
             }
         }
+        if(args_.empty() && default_command_) { default_command_->run(); return; }
     }
 }
