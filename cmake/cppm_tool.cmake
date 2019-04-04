@@ -20,9 +20,9 @@ function(cppm_load)
         )
     endif()
 
-    list(APPEND CMAKE_MODULE_PATH "${HOME}/.cppm/tool")
+    list(APPEND CMAKE_MODULE_PATH "${CPPM_ROOT}/tool")
     include(download/git)
-    git_clone(tool  URL https://github.com/injae/cppm_tools.git PATH ${CPPM_ROOT}             QUIET)
+    git_clone(tool  URL https://github.com/injae/cppm_tools.git PATH ${CPPM_ROOT}       QUIET)
     git_clone(cppkg URL https://github.com/injae/cppkg.git      PATH ${CPPM_ROOT}/repo  QUIET)
 endfunction()
 
