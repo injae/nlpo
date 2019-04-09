@@ -5,14 +5,15 @@ project(nlpo LANGUAGES C CXX VERSION 1.0.0)
 
 include(cppm_tool)
 cppm_load()
-cppm_compiler_option(
-	DEBUG
-		CLANG "-std=c++17"
-		GCC   "-std=c++17"
-	RELEASE
-		CLANG "-std=c++17"
-		GCC   "-std=c++17"
-)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fPIC -O0 -g -std=c++17")
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fPIC -O0 -g -std=c++17")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP /MDd /Zi /Ob0 /Od /std:c++17")
+elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ")
+endif()
 
 
 find_cppkg(fmt lastest  )
