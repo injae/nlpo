@@ -6,6 +6,7 @@ project(nlpo LANGUAGES C CXX VERSION 1.0.0)
 include(cppm_tool)
 cppm_load()
 cppm_compiler_option(
+DEFAULT
 )
 
 
