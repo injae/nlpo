@@ -8,6 +8,7 @@ cppm_load()
 cppm_compiler_option(
 DEFAULT
 )
+message("${CMAKE_CXX_FLAGS}")
 
 
 find_cppkg(fmt lastest  )
