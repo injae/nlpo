@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 3.6)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
-project(nlpo LANGUAGES CXX VERSION 1.0.0)
+project(nlpo LANGUAGES C CXX VERSION 1.0.0)
 
 include(cppm_tool)
 cppm_load()
 cppm_compiler_option(
-DEFAULT
+	DEBUG
+		CLANG "-std=c++17"
+		GCC   "-std=c++17"
+	RELEASE
+		CLANG "-std=c++17"
+		GCC   "-std=c++17"
 )
-message("${CMAKE_CXX_FLAGS}")
 
 
 find_cppkg(fmt lastest  )
