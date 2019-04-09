@@ -4,9 +4,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 project(nlpo LANGUAGES C CXX VERSION 1.0.0)
 
 include(cppm_tool)
+cppm_load()
 cppm_compiler_option(
 )
-cppm_load()
 
 
 find_cppkg(fmt lastest  )
