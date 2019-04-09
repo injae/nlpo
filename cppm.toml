@@ -4,11 +4,6 @@ version = "1.0.0"
 description = "c++ program option and command library"
 git = "https://github.com/injae/nlpo.git"
 
-[compiler] 
-clang = {option = "-std=c++17 -Wall -g -fPIC -O0"}
-gcc   = {option = "-std=c++17 -Wall -g -fPIC -O0"}
-msvc  = {option = "/std:c++17"}
-
 [[lib]]
 name   = "nlpo"
 type   = "static"

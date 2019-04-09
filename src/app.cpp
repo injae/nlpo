@@ -77,3 +77,4 @@ namespace nlpo
         if(args_.empty() && default_command_) { default_command_->run(); return; }
     }
 }
+
