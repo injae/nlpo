@@ -19,6 +19,7 @@ namespace nlpo
         Option& desc(const std::string& description);
         Option& args(const std::string& arguments);
         Option& call_back(std::function<void()>&& func);
+        void is_show(bool show) { is_show_ = show; }
         std::string make_description();
         void run(); 
     private:
