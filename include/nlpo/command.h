@@ -19,7 +19,7 @@ namespace nlpo
         Command& args(const std::string& description);
         Command& call_back(std::function<void()>&& func);
         std::string make_description();
-        void is_show(bool show) { is_show_ = show; }
+        Command& is_show(bool show) { is_show_ = show; return *this;}
         void run();
     private:
         bool is_show_ = false;
