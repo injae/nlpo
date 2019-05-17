@@ -69,11 +69,17 @@ namespace nlpo
                 args_.pop_front();
                 cmd->second->run();
             }
+            else if(args_.size() == 1 && default_command_) {
+                args_.pop_front();
+                default_command_->run();
+                return ;
+            }
             else {
                 std::cerr << "can't find option and subcommand" << std::endl;
                 exit(1);
             }
         }
+
         if(args_.empty() && default_command_) { default_command_->run(); return; }
     }
 }
