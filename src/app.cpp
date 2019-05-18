@@ -69,7 +69,7 @@ namespace nlpo
                 args_.pop_front();
                 cmd->second->run();
             }
-            else if(args_.size() == 1 && default_command_) {
+            else if(default_command_) {
                 default_command_->run();
                 return ;
             }
