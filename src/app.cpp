@@ -1,6 +1,7 @@
 #include "nlpo/app.h"
 #include <iostream>
 #include <algorithm>
+#include <fmt/format.h>
 
 namespace nlpo
 {
@@ -59,7 +60,6 @@ namespace nlpo
     }
     
     void App::run() {
-        if(args_.empty() && default_command_) { default_command_->run(); return; }
         while(!args_.empty()){
             auto arg = args_.front();
             if(auto opt = options_.find(arg); !(opt == options_.end())) {
@@ -79,7 +79,7 @@ namespace nlpo
                 exit(1);
             }
         }
-
+        if(args_.empty() && default_command_) { default_command_->run(); return; }
     }
 }
 
