@@ -3,6 +3,7 @@ set(CPPM_ROOT ${HOME}/.cppm)
 list(APPEND CMAKE_MODULE_PATH "${HOME}/.cppm/tool")
 
 macro(cppm_load)
+    list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
     list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
     if(NOT EXISTS ${CPPM_ROOT}/tool)
@@ -21,7 +22,16 @@ macro(cppm_load)
     include(download/git)
     git_clone(tool  URL https://github.com/injae/cppm_tools.git PATH ${CPPM_ROOT}       QUIET)
     git_clone(cppkg URL https://github.com/injae/cppkg.git      PATH ${CPPM_ROOT}/repo  QUIET)
-    cppm_setting()
+endmacro()
+
+macro(cppm_project)
+    cppm_load()
+endmacro()
+
+macro(cppm_setting)
+  cmake_parse_arguments(ARG "" "" "" ${ARGN})
+  include(cppm/setting/1.0.7)
+  _cppm_setting(${ARG_UNPARSED_ARGUMENTS})
 endmacro()
 
 macro(cppm_cxx_standard)
@@ -30,16 +40,13 @@ macro(cppm_cxx_standard)
     _cppm_cxx_standard(${ARG_UNPARSED_ARGUMENTS})
 endmacro()
 
+
 macro(cppm_compiler_option)
     cmake_parse_arguments(ARG "" "" "" ${ARGN})
     include(cppm/compiler_option/1.0.7)
     _cppm_compiler_option(${ARG_UNPARSED_ARGUMENTS})
 endmacro()
 
-macro(cppm_setting)
-  include(cppm/setting/1.0.5)
-  _cppm_setting()
-endmacro()
 
 function(find_cppkg)
     cmake_parse_arguments(ARG "" "" "" ${ARGN})
@@ -70,4 +77,3 @@ macro(download_package)
     include(cppkg/download/1.0.5)
     _download_package(${ARG_UNPARSED_ARGUMENTS})
 endmacro()
-

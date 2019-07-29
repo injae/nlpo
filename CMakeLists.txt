@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.6)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
-project(nlpo LANGUAGES C CXX VERSION 1.0.1)
+include(cmake/cppm_tool.cmake)
+cppm_project()
+project(nlpo VERSION 1.0.1 LANGUAGES C CXX)
+cppm_setting()
 
-include(cppm_tool)
-cppm_load()
 cppm_cxx_standard(17)
 cppm_compiler_option(DEFAULT)
 
