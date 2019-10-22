@@ -13,13 +13,31 @@ find_cppkg(fmt 6.0.0)
 
 cppm_target_define(nlpo STATIC 
 SOURCES 
+	src/value.cpp
+	src/args.cpp
 	src/option.cpp
 	src/command.cpp
-	src/app.cpp)
+	src/app.cpp
+	src/main.cpp)
+
+cppm_target_define(test BINARY 
+SOURCES 
+	src/main.cpp
+)
 
 
 cppm_target_dependencies(nlpo 
 PUBLIC	
 	fmt::fmt
 )
+
+
+cppm_target_dependencies(test 
+PUBLIC	
+	fmt::fmt
+)
+
+cppm_target_install(nlpo)
+
+cppm_target_install(test)
 
