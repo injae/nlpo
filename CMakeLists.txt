@@ -9,7 +9,7 @@ cppm_cxx_standard(17)
 cppm_compiler_option(DEFAULT)
 
 
-find_cppkg(fmt 6.0.0  )
+find_cppkg(fmt 6.0.0)
 
 cppm_target_define(nlpo STATIC 
 SOURCES 
@@ -22,6 +22,4 @@ cppm_target_dependencies(nlpo
 PUBLIC	
 	fmt::fmt
 )
-
-cppm_target_install(nlpo)
 
