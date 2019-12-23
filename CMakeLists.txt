@@ -23,3 +23,5 @@ PUBLIC
 	fmt::fmt
 )
 
+cppm_target_install(nlpo)
+
