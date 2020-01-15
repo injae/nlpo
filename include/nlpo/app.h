@@ -24,7 +24,10 @@ namespace nlpo
         Option&  add_option(const std::string& name);
         Command& add_command(const std::string& name);
         Command& add_command(const std::string& name, App& app);
-        Command& add_command(const std::string& name, AppWrapper& app);
+        template<typename T>
+        Command& add_command(const std::string& name) {
+            return add_command(name).call_back([&](){ T().app().parse(*this); });
+        }
         Command& add_command();
         void call_default() { default_command_->run(); }
         std::list<std::string>& args() { return args_; }
@@ -43,7 +46,6 @@ namespace nlpo
         std::optional<Command> default_command_;
     };
     
-
     class AppWrapper {
     public:
         App& app() { return app_; }
