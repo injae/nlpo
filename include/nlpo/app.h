@@ -15,6 +15,7 @@ namespace nlpo
     //template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
     //template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
     //using result = std::variant<std::string, std::vector<std::string>>;
+    class AppWrapper;
 
     class App 
     {
@@ -23,6 +24,7 @@ namespace nlpo
         Option&  add_option(const std::string& name);
         Command& add_command(const std::string& name);
         Command& add_command(const std::string& name, App& app);
+        Command& add_command(const std::string& name, AppWrapper& app);
         Command& add_command();
         void call_default() { default_command_->run(); }
         std::list<std::string>& args() { return args_; }
@@ -42,6 +44,13 @@ namespace nlpo
     };
     
 
+    class AppWrapper {
+    public:
+        App& app() { return app_; }
+        virtual ~AppWrapper() {}
+    protected:
+        App app_;
+    };
 }
 
 #endif
