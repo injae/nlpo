@@ -27,7 +27,7 @@ namespace nlpo
     Command& App::add_command(const std::string& name) {
         auto command = std::make_shared<Command>(name);
         command->regist(this);
-        commands_[name] = std::move(command);
+        commands_[name] = command;
         return *command;
     }
 
@@ -44,7 +44,7 @@ namespace nlpo
         auto opt = "--" + name;
         auto option = std::make_shared<Option>(name);
         option->regist(this);
-        options_[opt] = std::move(option);
+        options_[opt] = option;
         return *option;
     }
 
