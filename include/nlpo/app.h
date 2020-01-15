@@ -20,7 +20,7 @@ namespace nlpo
     class App 
     {
     public:
-        App();
+        App(const std::string& name = "");
         Option&  add_option(const std::string& name);
         Command& add_command(const std::string& name);
         Command& add_command(const std::string& name, App& app);
@@ -40,6 +40,7 @@ namespace nlpo
     private:
         void run();
     private:
+        std::string name_;
         std::list<std::string> args_;
         std::map<std::string, std::shared_ptr<Option>>  options_;
         std::map<std::string, std::shared_ptr<Command>> commands_;

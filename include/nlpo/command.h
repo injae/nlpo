@@ -12,8 +12,6 @@ namespace nlpo
     class Command : public std::enable_shared_from_this<Command>
     {
     public:
-        using ptr = std::shared_ptr<Command>;
-        ptr get_ptr() { return shared_from_this(); }
         Command(std::string name) : name_(name) {}
         void regist(App* app) { owner_ = app;}
         Command& desc(const std::string& description);

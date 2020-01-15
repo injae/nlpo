@@ -5,7 +5,7 @@
 
 namespace nlpo
 {
-    App::App() {
+    App::App(const std::string& name) : name_(name) {
         add_option("help")
         .abbr("h")
         .desc("show cppm commands and options")
@@ -26,7 +26,7 @@ namespace nlpo
     Command& App::add_command(const std::string& name) {
         auto command = std::make_shared<Command>(name);
         command->regist(this);
-        commands_[name] = command;
+        commands_[name] = std::move(command);
         return *command;
     }
 
@@ -43,22 +43,29 @@ namespace nlpo
         auto opt = "--" + name;
         auto option = std::make_shared<Option>(name);
         option->regist(this);
-        options_[opt] = option;
+        options_[opt] = std::move(option);
         return *option;
     }
 
     void App::show_help() {
+        fmt::print("Usage:\n");
+        auto has_cmd = commands_.empty() ? "" : " <command>";
+        auto has_opt = options_.empty() ? "" : " [--verbose]";
+        fmt::print("{}{}{}\n",name_, has_cmd, has_opt);
+
         if(!options_.empty()) {
-            std::cout << "Option:" << std::endl;
+            fmt::print("Option:\n");
             std::for_each(options_.begin(), options_.end(), [](auto& opt){
-                std::cout << opt.second->make_description();
+                fmt::print(opt.second->make_description());
             });
+            fmt::print("");
         }
         if(!commands_.empty()) {
-            std::cout << "Command:" << std::endl;
+            fmt::print("Command:\n");
             std::for_each(commands_.begin(), commands_.end(), [](auto& cmd){
-                std::cout << cmd.second->make_description();
+                fmt::print(cmd.second->make_description());
             });
+            fmt::print("");
         }
         exit(1);
     }
@@ -79,7 +86,7 @@ namespace nlpo
                 return ;
             }
             else {
-                std::cerr << "can't find option and subcommand" << std::endl;
+                fmt::print(stderr, "{} can't find option and subcommand", arg);
                 exit(1);
             }
         }

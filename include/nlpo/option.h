@@ -12,8 +12,6 @@ namespace nlpo
     class Option : public std::enable_shared_from_this<Option>
     {
     public:
-        using ptr = std::shared_ptr<Option>;
-        ptr get_ptr() { return shared_from_this(); }
         Option(const std::string& name) : name_(name) {}
         void regist(App *app) { owner_ = app; }
         Option& abbr(const std::string& abbreviation);
