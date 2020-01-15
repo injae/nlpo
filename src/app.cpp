@@ -6,7 +6,8 @@
 namespace nlpo
 {
     App::App() {
-        add_option("help")        .abbr("h")
+        add_option("help")
+        .abbr("h")
         .desc("show cppm commands and options")
         .call_back([&](){ show_help(); });
     }
@@ -34,7 +35,7 @@ namespace nlpo
     }
 
     Command& App::add_command(const std::string& name, AppWrapper& app) {
-        return add_command(name).call_back([&, app](){ app.parse(*this); });
+        return add_command(name).call_back([&, app](){ app.app().parse(*this); });
     }
     
     Command& App::add_command() {
