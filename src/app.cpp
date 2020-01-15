@@ -5,7 +5,7 @@
 
 namespace nlpo
 {
-    App::App(const std::string& name) : name_(name) {
+    App::App() {
         add_option("help")
         .abbr("h")
         .desc("show cppm commands and options")

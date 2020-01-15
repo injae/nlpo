@@ -20,7 +20,7 @@ namespace nlpo
     class App 
     {
     public:
-        App(const std::string& name = "");
+        App();
         Option&  add_option(const std::string& name);
         Command& add_command(const std::string& name);
         Command& add_command(const std::string& name, App& app);
@@ -35,6 +35,7 @@ namespace nlpo
         void parse(int argc, char* argv[]);
         void parse(App& app);
         void show_help();
+        App& name(const std::string& name) { name_ = name; return *this;} 
         friend Command;
         friend Option;
     private:
