@@ -29,6 +29,10 @@ namespace nlpo
         commands_[name] = command;
         return *command;
     }
+
+    Command& App::add_command(const std::string& name, App& app) {
+        return add_command(name).call_back([&](){ app.parse(*this); });
+    }
     
     Command& App::add_command() {
         default_command_ = std::make_optional<Command>("default");         

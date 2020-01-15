@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.12)
 
 include(cmake/cppm_tool.cmake)
 cppm_project()
@@ -13,8 +13,8 @@ find_cppkg(fmt 6.0.0)
 
 cppm_target_define(nlpo STATIC 
 SOURCES 
-	src/option.cpp
 	src/command.cpp
+	src/option.cpp
 	src/app.cpp)
 
 
