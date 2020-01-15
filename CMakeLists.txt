@@ -13,7 +13,6 @@ find_cppkg(fmt 6.0.0)
 
 cppm_target_define(nlpo STATIC 
 SOURCES 
-	src/test.cpp
 	src/command.cpp
 	src/option.cpp
 	src/app.cpp)
