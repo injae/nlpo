@@ -17,7 +17,7 @@ namespace nlpo
     //using result = std::variant<std::string, std::vector<std::string>>;
     class AppWrapper;
 
-    class App 
+    class App
     {
     public:
         App();

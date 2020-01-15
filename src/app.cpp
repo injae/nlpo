@@ -48,10 +48,10 @@ namespace nlpo
     }
 
     void App::show_help() {
-        fmt::print("Usage:\n");
-        auto has_cmd = commands_.empty() ? "" : " <command>";
-        auto has_opt = options_.empty() ? "" : " [--verbose]";
-        fmt::print("{}{}{}\n",name_, has_cmd, has_opt);
+        //fmt::print("Usage:\n");
+        //auto has_cmd = commands_.empty() ? "" : " <command>";
+        //auto has_opt = options_.empty() ? "" : " [--verbose]";
+        //fmt::print("{}{}{}\n",name_, has_cmd, has_opt);
 
         if(!options_.empty()) {
             fmt::print("Option:\n");
