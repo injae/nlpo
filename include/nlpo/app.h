@@ -48,7 +48,6 @@ namespace nlpo
     public:
         App& app() { return app_; }
         virtual ~AppWrapper() {}
-    protected:
         App app_;
     };
 }
