@@ -57,14 +57,14 @@ namespace nlpo
         if(!options_.empty()) {
             fmt::print("Option:\n");
             std::for_each(options_.begin(), options_.end(), [](auto& opt){
-                std::cout << opt.second->make_description() << std::endl;
+                 std::cout << opt.second->make_description();
             });
             fmt::print("\n");
         }
         if(!commands_.empty()) {
             fmt::print("Command:\n");
             std::for_each(commands_.begin(), commands_.end(), [](auto& cmd){
-                std::cout << cmd.second->make_description() << std::endl;
+                 std::cout << cmd.second->make_description();
             });
             fmt::print("\n");
         }
