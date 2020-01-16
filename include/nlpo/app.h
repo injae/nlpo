@@ -9,6 +9,8 @@
 #include <string>
 #include "nlpo/option.h"
 #include "nlpo/command.h"
+#include <fmt/format.h>
+using namespace fmt::literals;
 
 namespace nlpo
 {
