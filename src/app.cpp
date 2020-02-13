@@ -67,7 +67,7 @@ namespace nlpo
             });
             fmt::print("\n");
         }
-        exit(1);
+        exit(0);
     }
     
     void App::run() {
