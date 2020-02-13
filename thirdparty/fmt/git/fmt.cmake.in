@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
-project(fmt-6.0.0-install C CXX)
+project(fmt-git-install C CXX)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/cppm_tool.cmake)
 download_package(fmt
