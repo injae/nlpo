@@ -10,6 +10,6 @@ type   = "static"
 source = ["src/.*"]
 
 [dependencies]
-fmt = "git"
+fmt = "6.0.0"
 
     
