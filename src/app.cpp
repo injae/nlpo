@@ -31,7 +31,7 @@ namespace nlpo
     }
 
     Command& App::add_command(const std::string& name, App& app) {
-        return add_command(name).call_back([&](){ app.parse(*this); });
+        return add_command(name).call_back([&](){ app.name("{} {}"_format(name_, name)).parse(*this); });
     }
 
     Command& App::add_command() {
