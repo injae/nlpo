@@ -23,8 +23,20 @@ namespace nlpo
         return *this;
     }
 
-    Option& Option::call_back(std::function<void()>&& func) {
+    Option& Option::call_back(arg::None&& func) {
         call_backs_.emplace_back(std::move(func));
+        return *this;
+    }
+
+    Option& Option::call_back(arg::One&& func, std::string desc) {
+        args_ = desc;
+        call_backs_.emplace_back([&](){func(owner_->get_arg());});
+        return *this;
+    }
+
+    Option& Option::call_back(arg::Multi&& func, std::string desc) {
+        args_ = desc;
+        call_backs_.emplace_back([&](){func(owner_->args());});
         return *this;
     }
 

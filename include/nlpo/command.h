@@ -3,8 +3,8 @@
 
 #include <string>
 #include <memory>
-#include <functional>
 #include <vector>
+#include "nlpo/arg.h"
 
 namespace nlpo
 {
@@ -16,7 +16,9 @@ namespace nlpo
         void regist(App* app) { owner_ = app;}
         Command& desc(const std::string& description);
         Command& args(const std::string& description);
-        Command& call_back(std::function<void()>&& func);
+        Command& call_back(arg::None&& func);
+        Command& call_back(arg::One&& func, std::string desc="arg");
+        Command& call_back(arg::Multi&& func, std::string desc="...args");
         std::string make_description();
         Command& is_show(bool show) { is_show_ = show; return *this;}
         void run();
@@ -26,7 +28,7 @@ namespace nlpo
         std::string desc_;
         std::string args_;
         App* owner_;
-        std::vector<std::function<void()>> call_backs_;
+        std::vector<arg::None> call_backs_;
     };
 }
 
