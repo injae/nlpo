@@ -11,18 +11,18 @@ namespace nlpo
         return *this;
     }
 
-    Command& Command::call_back(arg::None&& func) {
+    Command& Command::call_back(arg::hook::None&& func) {
         call_backs_.emplace_back(std::move(func));
         return *this;
     }
 
-    Command& Command::call_back(arg::One&& func, std::string desc) {
+    Command& Command::call_back(arg::hook::One&& func, std::string desc) {
         args_ = desc;
         call_backs_.emplace_back([&](){func(owner_->get_arg());});
         return *this;
     }
 
-    Command& Command::call_back(arg::Multi&& func, std::string desc) {
+    Command& Command::call_back(arg::hook::Multi&& func, std::string desc) {
         args_ = desc;
         call_backs_.emplace_back([&](){func(owner_->args());});
         return *this;
