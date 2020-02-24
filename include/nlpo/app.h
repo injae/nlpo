@@ -18,12 +18,6 @@ namespace nlpo
     //template<class... Ts> struct overloaded : Ts... { using Ts::operator()...; };
     //template<class... Ts> overloaded(Ts...) -> overloaded<Ts...>;
     //using result = std::variant<std::string, std::vector<std::string>>;
-namespace arg
-{
-    using None  = std::function<void()>;
-    using One   = std::function<void(std::string)>;
-    using Multi = std::function<void(std::list<std::string>)>;
-}
     class AppWrapper;
 
     class App
