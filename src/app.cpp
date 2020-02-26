@@ -19,7 +19,8 @@ namespace nlpo
     }
 
     void App::parse(App& app) {
-        args_ = std::forward<std::list<std::string>>(app.args_);
+        args_ = std::move(app.args_);
+        run();
     }
 
     Command& App::add_command(const std::string& name) {
@@ -31,7 +32,7 @@ namespace nlpo
 
     Command& App::add_command(const std::string& name, App& app) {
         app.name("{} {}"_format(name_, name));
-        return add_command(name).call_back([&](){ app.parse(*this); app.run(); });
+        return add_command(name).call_back([&](){ app.parse(*this); });
     }
 
     Command& App::add_command() {
