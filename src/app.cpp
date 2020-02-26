@@ -19,6 +19,7 @@ namespace nlpo
     }
 
     void App::parse(App& app) {
+        args_.clear();
         for(auto& arg : app.args_) {
             args_.push_back(arg);
         }
