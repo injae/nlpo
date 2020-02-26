@@ -19,11 +19,7 @@ namespace nlpo
     }
 
     void App::parse(App& app) {
-        args_.clear();
-        for(auto arg : app.args_) {
-            args_.push_back(arg);
-        }
-        app.args_.clear();
+        args_ = std::forward<std::list<std::string>>(app.args_);
     }
 
     Command& App::add_command(const std::string& name) {
