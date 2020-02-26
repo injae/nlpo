@@ -19,7 +19,9 @@ namespace nlpo
     }
 
     void App::parse(App& app) {
-        std::copy(args_.begin(), args_.end(), app.args_.begin());
+        for(auto& arg : app.args_) {
+            args_.push_back(arg);
+        }
         run();
     }
 
