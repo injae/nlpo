@@ -14,12 +14,12 @@ namespace nlpo
 
     void App::parse(int argc, char* argv[]) {
         for(int i = 1; i < argc; ++i)  
-            args_.emplace_back(std::string{argv[i]}); 
+            args_.push_back(std::string{argv[i]}); 
         run();
     }
 
     void App::parse(App& app) {
-        args_ = std::move(app.args_);
+        args_ = app.args_;
         run();
     }
 
