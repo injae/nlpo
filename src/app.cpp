@@ -73,9 +73,6 @@ namespace nlpo
     }
     
     void App::run() {
-        for(auto& arg : args_) {
-            fmt::print(arg);
-        }
         fmt::print("{}\n",args_.size());
         while(!args_.empty()){
             auto arg = args_.front();
