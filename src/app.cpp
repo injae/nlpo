@@ -72,7 +72,10 @@ namespace nlpo
     
     void App::run() {
         while(!args_.empty()){
+            fmt::print("{}",args_.size());
             auto arg = args_.front();
+            fmt::print(arg);
+            if(arg == "") continue;
             if(auto opt = options_.find(arg); !(opt == options_.end())) {
                 args_.pop_front();
                 opt->second->run();
