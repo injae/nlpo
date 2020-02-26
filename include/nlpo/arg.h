@@ -7,7 +7,7 @@
 
 namespace nlpo::arg
 {
-    using One = std::string;
+    using One   = std::string;
     using Multi = std::list<std::string>;
     namespace hook {
         using None  = std::function<void()>;

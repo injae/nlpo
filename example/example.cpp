@@ -3,6 +3,7 @@
 
 int main(int argc, char* argv[]) 
 {
+    nlpo::App root;
     nlpo::App test_cmd;
     test_cmd.name("test");
     test_cmd.add_option("test")
@@ -17,7 +18,8 @@ int main(int argc, char* argv[])
                 auto arg = test_cmd.get_arg();
                 std::cout << arg << std::endl;
                 });
-    test_cmd.parse(argc, argv);
+    root.add_command("test", test_cmd);
+    root.parse(argc, argv);
 
     return 0;
 }

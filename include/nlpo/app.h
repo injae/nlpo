@@ -29,7 +29,7 @@ namespace nlpo
         Command& add_command(const std::string& name, App& app);
         template<typename T>
         Command& add_command(const std::string name) {
-            return add_command(name).call_back([&, name](){ T().app().name("{} {}"_format(name_, name)).parse(*this); });
+            return add_command(name, T().app());
         }
         Command& add_command();
         void call_default() { default_command_->run(); }

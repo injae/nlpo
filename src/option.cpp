@@ -30,13 +30,13 @@ namespace nlpo
 
     Option& Option::call_back(arg::hook::One func, std::string desc) {
         args_ = desc;
-        call_backs_.push_back([&](){func(owner_->require_arg());});
+        call_backs_.push_back([=](){func(owner_->require_arg());});
         return *this;
     }
 
     Option& Option::call_back(arg::hook::Multi func, std::string desc) {
         args_ = desc;
-        call_backs_.push_back([&](){func(owner_->require_args());});
+        call_backs_.push_back([=](){func(owner_->require_args());});
         return *this;
     }
 

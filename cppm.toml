@@ -9,6 +9,10 @@ name   = "nlpo"
 type   = "static"
 source = ["src/.*"]
 
+#[[bin]]
+#name = "nlpo-bin"
+#source = ["example/example.cpp", "src/.*"]
+
 [dependencies]
 fmt = "6.0.0"
 
