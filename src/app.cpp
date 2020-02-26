@@ -22,7 +22,7 @@ namespace nlpo
         for(auto& arg : app.args_) {
             args_.push_back(arg);
         }
-        run();
+        app.args_.clear();
     }
 
     Command& App::add_command(const std::string& name) {
@@ -33,7 +33,7 @@ namespace nlpo
     }
 
     Command& App::add_command(const std::string& name, App& app) {
-        return add_command(name).call_back([&, name](){ app.name("{} {}"_format(name_, name)).parse(*this); });
+        return add_command(name).call_back([&, name](){ app.name("{} {}"_format(name_, name)).parse(*this); app.run(); });
     }
 
     Command& App::add_command() {
