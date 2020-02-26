@@ -75,7 +75,10 @@ namespace nlpo
             fmt::print("{}",args_.size());
             auto arg = args_.front();
             fmt::print(arg);
-            if(arg == "") continue;
+            if(arg == "") {
+                args_.pop_front();
+                continue;
+            }
             if(auto opt = options_.find(arg); !(opt == options_.end())) {
                 args_.pop_front();
                 opt->second->run();
