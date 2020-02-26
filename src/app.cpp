@@ -19,7 +19,7 @@ namespace nlpo
     }
 
     void App::parse(App& app) {
-        args_ = std::move(app.args_);
+        args_ = app.args_;
         run();
     }
 
