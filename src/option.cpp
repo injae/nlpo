@@ -28,15 +28,15 @@ namespace nlpo
         return *this;
     }
 
-    Option& Option::call_back(arg::hook::One&& func, std::string desc) {
+    Option& Option::call_back(arg::hook::One func, std::string desc) {
         args_ = desc;
-        call_backs_.emplace_back([&](){func(owner_->get_arg());});
+        call_backs_.emplace_back([&](){func(owner_->require_arg());});
         return *this;
     }
 
-    Option& Option::call_back(arg::hook::Multi&& func, std::string desc) {
+    Option& Option::call_back(arg::hook::Multi func, std::string desc) {
         args_ = desc;
-        call_backs_.emplace_back([&](){func(owner_->args());});
+        call_backs_.emplace_back([&](){func(owner_->require_args());});
         return *this;
     }
 

@@ -17,8 +17,8 @@ namespace nlpo
         Command& desc(const std::string& description);
         Command& args(const std::string& description);
         Command& call_back(arg::hook::None&& func);
-        Command& call_back(arg::hook::One&& func, std::string desc="arg");
-        Command& call_back(arg::hook::Multi&& func, std::string desc="...args");
+        Command& call_back(arg::hook::One func  , std::string desc = "{arg}");
+        Command& call_back(arg::hook::Multi func, std::string desc = "{...args}");
         std::string make_description();
         Command& is_show(bool show) { is_show_ = show; return *this;}
         void run();
