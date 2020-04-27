@@ -24,6 +24,5 @@ set(nlpo_global_deps PRIVATE fmt)
 cppm_target_dependencies(nlpo
    ${nlpo_global_deps})
 
-
 cppm_target_install(nlpo)
 
