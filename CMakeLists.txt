@@ -12,7 +12,7 @@ cppm_compiler_option(DEFAULT)
 find_cppkg(fmt 8.0.1  MODULE fmt::fmt-header-only TYPE lib)
 
 
-cppm_target_define(nlpo SHARED NAMESPACE nlpo
+cppm_target_define(nlpo STATIC NAMESPACE nlpo
 SOURCES
     src/command.cpp
     src/option.cpp
