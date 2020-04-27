@@ -13,7 +13,7 @@ cppm_compiler_option(DEFAULT)
 find_cppkg(fmt 6.2.0 MODULE fmt::fmt)
 
 
-cppm_target_define(nlpo SHARED NAMESPACE nlpo
+cppm_target_define(nlpo STATIC NAMESPACE nlpo
 SOURCES
     src/command.cpp
     src/option.cpp
