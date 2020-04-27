@@ -7,7 +7,7 @@ git = "https://github.com/injae/nlpo.git"
 [lib]
 name   = "nlpo"
 namespace = "nlpo"
-type   = "shared"
+type   = "static"
 source = ["src/.*"]
 
 [dependencies]
