@@ -11,6 +11,6 @@ type   = "shared"
 source = ["src/.*"]
 
 [dependencies]
-fmt = {version="7.0.3", link="private"}
+fmt = {version="8.0.1", link="private"}
 
     

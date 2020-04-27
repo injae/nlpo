@@ -9,10 +9,10 @@ cppm_setting()
 cppm_cxx_standard(17)
 cppm_compiler_option(DEFAULT)
 
-find_cppkg(fmt 7.0.3  MODULE fmt::fmt TYPE lib)
+find_cppkg(fmt 8.0.1  MODULE fmt::fmt-header-only TYPE lib)
 
 
-cppm_target_define(nlpo STATIC
+cppm_target_define(nlpo SHARED NAMESPACE nlpo
 SOURCES
     src/command.cpp
     src/option.cpp
@@ -23,6 +23,7 @@ SOURCES
 set(nlpo_global_deps PRIVATE fmt)
 cppm_target_dependencies(nlpo
    ${nlpo_global_deps})
+
 
 cppm_target_install(nlpo)
 
