@@ -10,7 +10,7 @@ cppm_setting()
 cppm_cxx_standard(17)
 cppm_compiler_option(DEFAULT)
 
-find_cppkg(fmt 6.0.0 MODULE fmt::fmt)
+find_cppkg(fmt 6.2.0 MODULE fmt::fmt)
 
 
 cppm_target_define(nlpo SHARED NAMESPACE nlpo

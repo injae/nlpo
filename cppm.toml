@@ -11,6 +11,6 @@ type   = "shared"
 source = ["src/.*"]
 
 [dependencies]
-fmt = "6.0.0"
+fmt = "6.2.0"
 
     
