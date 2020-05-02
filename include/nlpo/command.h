@@ -20,7 +20,7 @@ namespace nlpo
         Command& call_back(arg::hook::One func  , std::string desc = "{arg}");
         Command& call_back(arg::hook::Multi func, std::string desc = "{...args}");
         std::string make_description();
-        Command& is_show(bool show) { is_show_ = show; return *this;}
+        Command& is_show(bool show) { is_show_ = !show; return *this;}
         void run();
     private:
         bool is_show_ = false;
