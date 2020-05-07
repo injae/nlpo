@@ -8,7 +8,7 @@ set(CPPM_VERSION "0.0.10")
 
 set(CPPM_ROOT   ${HOME}/.cppm)
 set(CPPM_CACHE  ${CPPM_ROOT}/cache)
-set(CPPM_PKGS   ${CPPM_ROOT}/share)
+set(CPPM_PKGS   ${CPPM_ROOT}/cppkg)
 set(CPPM_CORE   ${CPPM_PKGS}/cppm-tools-${CPPM_VERSION})
 
 if(NOT DEFINED IS_CPPM_LOADED)
