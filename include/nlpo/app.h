@@ -46,6 +46,7 @@ namespace nlpo
         std::string get_arg() {auto arg = args_.front(); args_.pop_front(); return arg;}
         void parse(int argc, char* argv[]);
         void parse(App& app);
+        void append(std::vector<std::string>& args);
         void show_help();
         App& name(const std::string& name) { name_ = name; return *this;} 
         friend Command;

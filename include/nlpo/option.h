@@ -4,13 +4,16 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <map>
 #include "nlpo/arg.h"
 
 namespace nlpo
 {
     class App;
+
     class Option : public std::enable_shared_from_this<Option>
     {
+        friend App;
     public:
         Option(const std::string& name) : name_(name) {}
         void regist(App *app) { owner_ = app; }
@@ -32,6 +35,22 @@ namespace nlpo
         App* owner_;
         std::vector<arg::hook::None> call_backs_;
     };
+
+
+    //class Group : public std::enable_shared_from_this<Option>
+    //{
+    //public:
+    //    inline std::string name() { return name_; }
+    //    Group& owner(App* owner) { owner_ = owner; return *this; }
+    //    Group& default_option(const std::string& name);
+    //    inline Group& name(std::string name) { name_ = name; return *this; }
+    //    Option& add_option(const std::string& name);
+    //    std::shared_ptr<Option> call(const std::string& args);
+    //private:
+    //    std::map<std::string, std::shared_ptr<Option>> options_;
+    //    App* owner_;
+    //    std::string name_;
+    //};
 }
 
 #endif

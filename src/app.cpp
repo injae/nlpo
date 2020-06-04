@@ -23,6 +23,10 @@ namespace nlpo
         run();
     }
 
+    void App::append(std::vector<std::string>& args) {
+        args_.insert(args_.end(), args.begin(), args.end());
+    }
+
     Command& App::add_command(const std::string& name) {
         auto command = std::make_shared<Command>(name);
         command->regist(this);
@@ -52,7 +56,8 @@ namespace nlpo
         fmt::print("Usage:\n");
         auto has_cmd = commands_.empty() ? "" : " <command>";
         auto has_opt = options_.empty() ? "" : " [--verbose]";
-        if(name_ != "") fmt::print("   {}{}{}\n\n",name_, has_cmd, has_opt);
+        auto has_default_arg = default_command_ ? default_command_->args_ : "";
+        if(name_ != "") fmt::print("   {}{}{} {}\n\n",name_, has_cmd, has_opt, has_default_arg);
 
         if(!options_.empty()) {
             fmt::print("Option:\n");

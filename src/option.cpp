@@ -58,4 +58,25 @@ namespace nlpo
             return "{:<35}{:<20}\n"_format(front,end);
         }
     }
+
+    //    Option& Group::add_option(const std::string& name) {
+    //        auto opt = "--" + name;
+    //        auto option = std::make_shared<Option>(name);
+    //        option->regist(owner_);
+    //        options_[opt] = option;
+    //        return *option;
+    //    }
+    //
+    //    Group& Group::default_option(const std::string& name) {
+    //        
+    //        return *this;
+    //    }
+    //
+    //    std::shared_ptr<Option> Group::call(const std::string& arg) {
+    //        if(auto opt = options_.find(arg); !(opt == options_.end())) {
+    //            return opt->second;
+    //        }
+    //
+    //        return nullptr;
+    //    }
 }
