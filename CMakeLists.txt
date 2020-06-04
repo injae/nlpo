@@ -4,7 +4,7 @@ set(CPPM_VERSION 0.0.12)
 include(cmake/cppm_loader.cmake)
 cppm_project()
 
-project(nlpo VERSION 1.0.3 LANGUAGES C CXX)
+project(nlpo VERSION 0.0.3 LANGUAGES C CXX)
 cppm_setting()
 cppm_cxx_standard(17)
 cppm_compiler_option(DEFAULT)

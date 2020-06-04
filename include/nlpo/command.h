@@ -11,6 +11,7 @@ namespace nlpo
     class App;
     class Command : public std::enable_shared_from_this<Command>
     {
+        friend App;
     public:
         Command(std::string name) : name_(name) {}
         void regist(App* app) { owner_ = app;}

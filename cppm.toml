@@ -1,6 +1,6 @@
 [package]
 name = "nlpo"
-version = "1.0.3"
+version = "0.0.3"
 description = "c++ program option and command library"
 git = "https://github.com/injae/nlpo.git"
 
