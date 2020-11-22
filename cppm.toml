@@ -10,6 +10,6 @@ type   = "static"
 source = ["src/.*"]
 
 [dependencies]
-fmt = "6.0.0"
+fmt = {version="7.0.3", link="private"}
 
     
